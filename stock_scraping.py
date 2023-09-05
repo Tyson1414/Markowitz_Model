@@ -12,5 +12,5 @@ r = requests.get(site_url, headers=headers)
 if r.status_code == 200:
     site_content = r.text
 
-with open('saved_page.html', 'w', encoding='utf-8') as f:
+with open('500_stocks.html', 'w', encoding='utf-8') as f:
     f.write(site_content)
