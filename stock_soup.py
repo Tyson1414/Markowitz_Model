@@ -14,3 +14,8 @@ for row in rows[1:]:
     key = row.find_all('td')[1].text.strip()
     value = row.find_all('td')[2].text.strip()
     companies[key] = value
+
+#Correción de una stock
+val = companies["BRK.B"]
+del companies["BRK.B"]
+companies["BRK-B"] = val
