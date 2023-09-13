@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import urllib
-import pandas as pd
 import requests
 
 # Scrape stock symbols from website
