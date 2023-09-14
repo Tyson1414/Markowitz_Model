@@ -12,8 +12,7 @@ matriz = []
 for row in rows[1:]:
     datos = [td.text.strip() for td in row.find_all('td')]
     matriz.append(datos)
-    #key = row.find_all('td')[1].text.strip()
-    #value = row.find_all('td')[2].text.strip()
+
 i = 0
 for fila in matriz:
     print(i,fila[0])

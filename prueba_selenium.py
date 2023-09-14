@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.edge.service import Service
 from selenium.webdriver.edge.options import Options
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 import time
 
 
@@ -22,13 +23,12 @@ driver.get("https://finance.yahoo.com/quote/"+stock_sym+"/history?period1="+peri
 
 # Haz scroll para cargar más datos (puedes repetir esto según sea necesario)
 # Seleccionamos un elemento de la página web
-element = driver.find_element(by='id', value='yfin-usr-qry')
+body = driver.find_element(By.TAG_NAME, 'body')
 pos_ini = driver.execute_script("return window.scrollY;")
 
 while True:
-    #driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    element.send_keys(Keys.PAGE_DOWN);
-    time.sleep(0.8)
+    body.send_keys(Keys.END);
+    time.sleep(0.6)
     pos_new = driver.execute_script("return window.scrollY;")
     if pos_ini == pos_new: break
     else: pos_ini = pos_new
@@ -37,8 +37,7 @@ while True:
 time.sleep(2)
 
 # Extrae el HTML después de haber cargado más datos
-# Se define global para que sea accesible desde otro archivo
-global LLY_html
+
 LLY_html = driver.page_source
 
 # Cierra el navegador
