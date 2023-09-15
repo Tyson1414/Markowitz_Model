@@ -4,7 +4,11 @@ from selenium.webdriver.edge.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
+import datetime
 
+# Valores de marca de tiempo Unix
+five_years = 157776400
+fecha_actual_unix = int(time.time())
 
 # Configura el controlador del navegador
 edge_options = Options()
@@ -15,14 +19,17 @@ edge_service = Service(executable_path='msedgedriver.exe')
 driver = webdriver.Edge(service=edge_service, options=edge_options)
 
 stock_sym = "LLY"
-period1 = "1536624000"
-period2 = "1694390400"
-#https://finance.yahoo.com/quote/LLY/history?period1=1536624000&period2=1694390400
+period1 = str(fecha_actual_unix - five_years)
+period2 = str(fecha_actual_unix)
+#
 # Abre la página web
-driver.get("https://finance.yahoo.com/quote/"+stock_sym+"/history?period1="+period1+"&period2="+period2)
+
+driver.get("https://finance.yahoo.com/quote/LLY/history?period1="+period1+"&period2="+period2)
+body = driver.find_element(By.TAG_NAME, 'body')
 
 # Haz scroll para cargar más datos (puedes repetir esto según sea necesario)
 # Seleccionamos un elemento de la página web
+
 body = driver.find_element(By.TAG_NAME, 'body')
 pos_ini = driver.execute_script("return window.scrollY;")
 
