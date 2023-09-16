@@ -21,5 +21,12 @@ conn = sqlite3.connect('stocks.sqlite')
 cur = conn.cursor()
 for row in matriz:
     cur.execute('INSERT OR IGNORE INTO Date (date) VALUES (?)', (row[0],))
+    cur.execute('SELECT id FROM Date WHERE date = ? ', (row[0], ))
+    date_id = cur.fetchone()[0]
+    cur.execute('SELECT id FROM Stock WHERE symbol = ? ', (prueba_selenium.stock_sym, ))
+    symbol_id = cur.fetchone()[0]
+    cur.execute('''INSERT OR IGNORE INTO Historical 
+    (price,date_id,stock_id) VALUES (?,?,?)''', 
+    (row[1],date_id,symbol_id,))
 
 conn.commit()

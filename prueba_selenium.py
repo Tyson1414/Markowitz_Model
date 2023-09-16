@@ -18,13 +18,13 @@ edge_options.use_chromium = True  # Utiliza el motor Chromium de Edge
 edge_service = Service(executable_path='msedgedriver.exe')
 driver = webdriver.Edge(service=edge_service, options=edge_options)
 
-stock_sym = "LLY"
+stock_sym = "BRK.B"
 period1 = str(fecha_actual_unix - five_years)
 period2 = str(fecha_actual_unix)
 #
 # Abre la página web
 
-driver.get("https://finance.yahoo.com/quote/LLY/history?period1="+period1+"&period2="+period2)
+driver.get("https://finance.yahoo.com/quote/"+stock_sym+"/history?period1="+period1+"&period2="+period2)
 body = driver.find_element(By.TAG_NAME, 'body')
 
 # Haz scroll para cargar más datos (puedes repetir esto según sea necesario)
