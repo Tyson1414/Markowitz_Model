@@ -1,3 +1,4 @@
+'''
 from bs4 import BeautifulSoup
 import prueba_selenium
 import sqlite3
@@ -30,3 +31,5 @@ for row in matriz:
     (row[1],date_id,symbol_id,))
 
 conn.commit()
+
+'''

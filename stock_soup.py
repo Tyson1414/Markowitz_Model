@@ -12,5 +12,4 @@ def extract_table(page):
         key = row.find_all('td')[1].text.strip()
         value = row.find_all('td')[2].text.strip()
         companies[key] = value
-        #print(i,companies[key])
     return companies
